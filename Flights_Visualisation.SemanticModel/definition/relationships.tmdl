@@ -1,0 +1,61 @@
+relationship 36d436cd-52fa-4dcc-b2fe-072ca671b040
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_time.full_date
+	toColumn: LocalDateTable_6b41faf4-615b-4baa-badc-0f5ce2a4e89e.Date
+
+relationship AutoDetected_1c18e014-23e0-4176-a48b-c667b8fce0b0
+	fromColumn: fact_flights.time_key
+	toColumn: dim_time.time_key
+
+relationship AutoDetected_1e0478ee-2641-4e65-9ff0-3123984ff414
+	fromColumn: fact_flights.airline_key
+	toColumn: dim_airline.airline_key
+
+relationship 1a5310b8-5324-4b85-936c-be2e72874a04
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_flights.scheduled_departure_edited
+	toColumn: LocalDateTable_e8f23424-657a-4968-9366-cc079d90e83c.Date
+
+relationship cc32eefc-817e-4dbf-88f3-5d6294d59fee
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_flights.departure_time_edited
+	toColumn: LocalDateTable_8caa3807-af04-41bb-b89d-0a68d8008ea9.Date
+
+relationship 5da64f43-2f08-bf86-ba3a-d63c3cac9970
+	fromColumn: fact_flights.CANCELLATION_REASON
+	toColumn: dim_cancel_cause.cause_key
+
+relationship 11d50853-5918-c202-ca55-9fd616aed246
+	fromColumn: fact_flights.!origin_airport_IATA
+	toColumn: dim_airport_codes.AIRPORT
+
+relationship 988c3012-639a-8425-6ab8-22e82ab551e9
+	isActive: false
+	fromColumn: fact_flights.!destination_airport_edited
+	toColumn: dim_airport_codes.AIRPORT
+
+relationship cc53b292-1c8f-4c47-9be6-9328c83ccbad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_flights.!full_date
+	toColumn: LocalDateTable_248d7e28-8c38-4840-b1a6-80299fab739f.Date
+
+relationship fa8deb80-af9e-4dad-9cce-ddac4d3dc722
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_flights.scheduled_arrival_edited
+	toColumn: LocalDateTable_0b89fa9e-f63c-4ded-b413-26221d7330b8.Date
+
+relationship 0190e305-2448-4d74-9c36-41662dcbfeac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_flights.arrival_time_edited
+	toColumn: LocalDateTable_c541120f-bc04-479a-badb-cbbdf686df57.Date
+
+relationship 88e64aa4-7e2b-41f6-9488-1e1760232dce
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_flights.wheels_off_edited
+	toColumn: LocalDateTable_cd54e94c-03c5-434c-8b5a-c8892d93a8e6.Date
+
+relationship c7edd5a6-0738-4588-8bde-fcd5d97b48e1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_flights.wheels_on_edited
+	toColumn: LocalDateTable_140774ed-98c6-4d84-bcdd-42d7f26a0ecc.Date
+

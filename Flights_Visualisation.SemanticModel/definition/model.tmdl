@@ -1,0 +1,44 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Errors in queries that were loaded on 25/09/2025 15:03:17.
+queryGroup 'Query Errors - 25/09/2025 15:03:17'
+
+	annotation PBI_QueryGroupOrder = 0
+
+/// Errors in queries that were loaded on 28/09/2025 00:29:12.
+queryGroup 'Query Errors - 28/09/2025 00:29:12'
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation PBI_QueryOrder = ["fact_flights","dim_time","dim_route","Errors in dim_route","dim_airline","dim_aircraft","Errors in dim_aircraft","dim_cancel_cause","Measures_help","dim_airport_codes","dim_airport"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table fact_flights
+ref table DateTableTemplate_a42835b1-691c-4cf3-8d6a-c7a37b36a3fc
+ref table dim_time
+ref table LocalDateTable_6b41faf4-615b-4baa-badc-0f5ce2a4e89e
+ref table dim_airline
+ref table LocalDateTable_e8f23424-657a-4968-9366-cc079d90e83c
+ref table LocalDateTable_8caa3807-af04-41bb-b89d-0a68d8008ea9
+ref table dim_cancel_cause
+ref table Measures_help
+ref table dim_airport_codes
+ref table dim_airport
+ref table LocalDateTable_248d7e28-8c38-4840-b1a6-80299fab739f
+ref table LocalDateTable_0b89fa9e-f63c-4ded-b413-26221d7330b8
+ref table LocalDateTable_c541120f-bc04-479a-badb-cbbdf686df57
+ref table LocalDateTable_cd54e94c-03c5-434c-8b5a-c8892d93a8e6
+ref table LocalDateTable_140774ed-98c6-4d84-bcdd-42d7f26a0ecc
+ref table DelayCauses
+
+ref cultureInfo en-US
+

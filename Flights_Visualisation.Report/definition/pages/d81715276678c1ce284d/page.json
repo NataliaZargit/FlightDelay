@@ -1,0 +1,14 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "d81715276678c1ce284d",
+  "displayName": "10. Delay&Distance",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "950d3d3e479073982925",
+    "type": "Default",
+    "parameters": [],
+    "referenceScope": "CrossReport"
+  }
+}

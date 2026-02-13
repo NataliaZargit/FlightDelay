@@ -1,0 +1,88 @@
+table dim_airport
+	lineageTag: 847e4535-07d8-4211-b3d9-58b0a0aa890e
+
+	column airport_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 33cccd84-5ccb-472a-89c9-3fc7b0e0c9c8
+		summarizeBy: sum
+		sourceColumn: airport_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column iata_code
+		dataType: string
+		lineageTag: 691d0114-e7a4-4571-9156-4ff1375f24bd
+		summarizeBy: none
+		sourceColumn: iata_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column airport_name
+		dataType: string
+		lineageTag: 48dfe286-2f2a-4859-9222-9f6deafac01b
+		summarizeBy: none
+		sourceColumn: airport_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: ca238349-3581-4ae3-9da2-cadd1045c1ba
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: de551f6f-648a-42f3-ae7b-9facfb3804a9
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 2ed6bf22-1f9f-4e2a-b3bf-9a6160576980
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		lineageTag: 550c3d6f-c32b-45c0-b587-35e018fb84c8
+		summarizeBy: sum
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lon
+		dataType: double
+		lineageTag: b3a9bd2d-3663-472e-a890-f7e72b74f15b
+		summarizeBy: sum
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_airport = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\nzara\OneDrive\DBS\Data Visualisation\Assignment CA2\csv_final\dim_airport.csv"),[Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"airport_key", Int64.Type}, {"iata_code", type text}, {"airport_name", type text}, {"city", type text}, {"state", type text}, {"country", type text}, {"lat", type number}, {"lon", type number}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type",14.33102,-14.33361111,Replacer.ReplaceValue,{"lat"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",-144.79598,144.79722222,Replacer.ReplaceValue,{"lon"})
+				in
+				    #"Replaced Value1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

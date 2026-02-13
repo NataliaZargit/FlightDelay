@@ -1,0 +1,42 @@
+table dim_cancel_cause
+	lineageTag: bc73c7ab-086b-4345-a937-2de63805b5b9
+
+	column cause_key
+		dataType: string
+		lineageTag: af52e0d5-63a6-4fe2-8550-c943f5537d58
+		summarizeBy: none
+		sourceColumn: cause_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column cause_code
+		dataType: string
+		lineageTag: e50b7045-2069-427f-81b8-cd0404819021
+		summarizeBy: none
+		sourceColumn: cause_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column cause_description
+		dataType: string
+		lineageTag: 2cbcf1c3-1acf-4b64-8d6f-d21135f62c2b
+		summarizeBy: none
+		sourceColumn: cause_description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_cancel_cause = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\nzara\OneDrive\DBS\Data Visualisation\Assignment CA2\csv_final\dim_cancel_cause.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"cause_key", type text}, {"cause_code", type text}, {"cause_description", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

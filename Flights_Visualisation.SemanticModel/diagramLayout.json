@@ -1,0 +1,126 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 470,
+            "y": 0
+          },
+          "nodeIndex": "fact_flights",
+          "nodeLineageTag": "08f59037-cd95-4e85-bfb8-b8c943f7fa11",
+          "size": {
+            "height": 1000,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 155,
+            "y": 0
+          },
+          "nodeIndex": "dim_time",
+          "nodeLineageTag": "c9c34671-3fe7-42f1-a1ab-d3a88951816f",
+          "size": {
+            "height": 429.88339411866139,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 801.1130653266332,
+            "y": 640.1331658291457
+          },
+          "nodeIndex": "dim_airline",
+          "nodeLineageTag": "fa56f350-d0be-4ade-891f-eba252368847",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 165,
+            "y": 496
+          },
+          "nodeIndex": "dim_cancel_cause",
+          "nodeLineageTag": "bc73c7ab-086b-4345-a937-2de63805b5b9",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1327.3246861065661,
+            "y": 419.11459968602821
+          },
+          "nodeIndex": "Measures_help",
+          "nodeLineageTag": "fc6031fc-62e0-490a-ad90-cb173157f877",
+          "size": {
+            "height": 952.50863422292,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 791.67697739030041,
+            "y": 0
+          },
+          "nodeIndex": "dim_airport_codes",
+          "nodeLineageTag": "81fd538d-f470-4a52-aebc-6ec310a32b6a",
+          "size": {
+            "height": 395.35175879396985,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1346.450846737034,
+            "y": 0
+          },
+          "nodeIndex": "dim_airport",
+          "nodeLineageTag": "847e4535-07d8-4211-b3d9-58b0a0aa890e",
+          "size": {
+            "height": 342.79145728643221,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1694.629238696833,
+            "y": 400
+          },
+          "nodeIndex": "DelayCauses",
+          "nodeLineageTag": "54b809cd-026e-4777-b15c-f053672e88ac",
+          "size": {
+            "height": 714.52119309262162,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 55.391304347826086,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

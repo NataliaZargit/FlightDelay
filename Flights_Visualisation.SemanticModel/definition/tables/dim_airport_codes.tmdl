@@ -1,0 +1,115 @@
+table dim_airport_codes
+	lineageTag: 81fd538d-f470-4a52-aebc-6ec310a32b6a
+
+	column AIRPORT_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 13f612de-b9a6-450d-a144-207dfb0e7b32
+		summarizeBy: none
+		sourceColumn: AIRPORT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIRPORT
+		dataType: string
+		lineageTag: 36d4285f-f5af-40cc-9a17-1cc9178056e0
+		summarizeBy: none
+		sourceColumn: AIRPORT
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISPLAY_AIRPORT_NAME
+		dataType: string
+		lineageTag: de31639c-83ec-4211-bf6b-005031fcd556
+		summarizeBy: none
+		sourceColumn: DISPLAY_AIRPORT_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISPLAY_AIRPORT_CITY_NAME_FULL
+		dataType: string
+		lineageTag: 94e122cd-c95b-400b-9147-67e40b0995cf
+		summarizeBy: none
+		sourceColumn: DISPLAY_AIRPORT_CITY_NAME_FULL
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIRPORT_WAC
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d50fe53-8d9a-48dc-a603-9ee221c8b721
+		summarizeBy: none
+		sourceColumn: AIRPORT_WAC
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIRPORT_COUNTRY_NAME
+		dataType: string
+		lineageTag: cc29356a-91af-406c-9d28-a354b1df310f
+		summarizeBy: none
+		sourceColumn: AIRPORT_COUNTRY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIRPORT_COUNTRY_CODE_ISO
+		dataType: string
+		lineageTag: da902be4-3fa2-4e15-af8e-da01bace49af
+		summarizeBy: none
+		sourceColumn: AIRPORT_COUNTRY_CODE_ISO
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIRPORT_STATE_NAME
+		dataType: string
+		lineageTag: b1152202-9007-4c6a-88b2-899cb9b74e8a
+		summarizeBy: none
+		sourceColumn: AIRPORT_STATE_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIRPORT_STATE_CODE
+		dataType: string
+		lineageTag: e5781e34-93f7-4e56-a42f-d69825a5fde5
+		summarizeBy: none
+		sourceColumn: AIRPORT_STATE_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIRPORT_STATE_FIPS
+		dataType: int64
+		formatString: 0
+		lineageTag: ce1d05f0-f9a5-4f97-bf3a-d580b3288d14
+		summarizeBy: none
+		sourceColumn: AIRPORT_STATE_FIPS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CITY_MARKET_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 411425ff-5666-47c8-ae56-766806d13238
+		summarizeBy: none
+		sourceColumn: CITY_MARKET_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISPLAY_CITY_MARKET_NAME_FULL
+		dataType: string
+		lineageTag: 87bdab7c-bd31-4f46-ad97-050de9e518b0
+		summarizeBy: none
+		sourceColumn: DISPLAY_CITY_MARKET_NAME_FULL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_airport_codes = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\nzara\OneDrive\DBS\Data Visualisation\Assignment CA2\csv_final\dim_airport_codes.csv"),[Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"AIRPORT_ID", Int64.Type}, {"AIRPORT", type text}, {"DISPLAY_AIRPORT_NAME", type text}, {"DISPLAY_AIRPORT_CITY_NAME_FULL", type text}, {"AIRPORT_WAC", Int64.Type}, {"AIRPORT_COUNTRY_NAME", type text}, {"AIRPORT_COUNTRY_CODE_ISO", type text}, {"AIRPORT_STATE_NAME", type text}, {"AIRPORT_STATE_CODE", type text}, {"AIRPORT_STATE_FIPS", Int64.Type}, {"CITY_MARKET_ID", Int64.Type}, {"DISPLAY_CITY_MARKET_NAME_FULL", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

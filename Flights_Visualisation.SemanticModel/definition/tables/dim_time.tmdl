@@ -1,0 +1,146 @@
+table dim_time
+	lineageTag: c9c34671-3fe7-42f1-a1ab-d3a88951816f
+
+	column time_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 58295550-099c-408c-aab0-82c2d37bede9
+		summarizeBy: none
+		sourceColumn: time_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a8c72861-2969-44b0-b8e6-6c0b2ed5b03d
+		summarizeBy: none
+		sourceColumn: full_date
+
+		variation Variation
+			isDefault
+			relationship: 36d436cd-52fa-4dcc-b2fe-072ca671b040
+			defaultHierarchy: LocalDateTable_6b41faf4-615b-4baa-badc-0f5ce2a4e89e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 62eaaceb-5f9d-4ca7-82d3-591cd1de5a11
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: ebfadfea-5f82-413f-ad90-1abcffc1b79a
+		summarizeBy: sum
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: ee41d3c3-92f9-4980-8d86-ccafe2ef0b27
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		dataType: int64
+		formatString: 0
+		lineageTag: db676221-e467-4804-9258-ffa951da6e9b
+		summarizeBy: sum
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 588326aa-fe1f-4b1f-b513-858ae7eb242b
+		summarizeBy: sum
+		sourceColumn: day_of_week_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name_short
+		dataType: string
+		lineageTag: 8ac91702-b865-4e85-a6af-98e63214245d
+		summarizeBy: none
+		sourceColumn: day_name_short
+		sortByColumn: day_of_week_num
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: e7e1d973-6730-4d92-a6cc-d7019e4a423b
+		summarizeBy: none
+		sourceColumn: day_name
+		sortByColumn: day_of_week_num
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name_short
+		dataType: string
+		lineageTag: c422eee6-6fcf-4e7e-9d4f-98c0ea5c3b67
+		summarizeBy: none
+		sourceColumn: month_name_short
+		sortByColumn: month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 0173d4d5-a110-4d92-bb2c-80dee2e0042c
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: cf2263bb-1aa1-4709-a319-34370ff67408
+		summarizeBy: sum
+		sourceColumn: week_of_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5e7aa615-af8d-487c-8445-929815a8f9ef
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_time = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\nzara\OneDrive\DBS\Data Visualisation\Assignment CA2\csv_final\dim_time.csv"),[Delimiter=",", Columns=13, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"time_key", Int64.Type}, {"full_date", type date}, {"year", Int64.Type}, {"quarter", Int64.Type}, {"month", Int64.Type}, {"day", Int64.Type}, {"day_of_week_num", Int64.Type}, {"day_name_short", type text}, {"day_name", type text}, {"month_name_short", type text}, {"month_name", type text}, {"week_of_year", Int64.Type}, {"is_weekend", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

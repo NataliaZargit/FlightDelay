@@ -1,0 +1,892 @@
+table fact_flights
+	lineageTag: 08f59037-cd95-4e85-bfb8-b8c943f7fa11
+
+	column AIRLINE
+		dataType: string
+		lineageTag: a4ff8701-fed9-41b9-ad37-545be82e1734
+		summarizeBy: none
+		sourceColumn: AIRLINE
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLIGHT_NUMBER
+		dataType: string
+		lineageTag: 59e05017-ab7a-4e49-98f2-c57477401ac1
+		summarizeBy: none
+		sourceColumn: FLIGHT_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAIL_NUMBER
+		dataType: string
+		lineageTag: 10224734-1cdc-47a5-8665-167083484d5f
+		summarizeBy: none
+		sourceColumn: TAIL_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORIGIN_AIRPORT
+		dataType: string
+		lineageTag: 780a4680-e931-4c16-9392-106cbe6882e0
+		summarizeBy: none
+		sourceColumn: ORIGIN_AIRPORT
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESTINATION_AIRPORT
+		dataType: string
+		lineageTag: 1f2b5b65-dafe-48d9-98b6-2dd24d8903b7
+		summarizeBy: none
+		sourceColumn: DESTINATION_AIRPORT
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULED_DEPARTURE
+		dataType: string
+		lineageTag: 49ffecda-5e79-494e-b236-30b455f3a954
+		summarizeBy: none
+		sourceColumn: SCHEDULED_DEPARTURE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEPARTURE_TIME
+		dataType: string
+		lineageTag: 2a7eebf2-912e-4cdc-bdd4-93a968e389aa
+		summarizeBy: none
+		sourceColumn: DEPARTURE_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEPARTURE_DELAY
+		dataType: string
+		lineageTag: 18f71e96-9b1e-452f-a799-4d2bab72dd87
+		summarizeBy: none
+		sourceColumn: DEPARTURE_DELAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAXI_OUT
+		dataType: string
+		lineageTag: 7e437de3-3acf-42f3-b041-8d21fab3865b
+		summarizeBy: none
+		sourceColumn: TAXI_OUT
+
+		annotation SummarizationSetBy = Automatic
+
+	column WHEELS_OFF
+		dataType: string
+		lineageTag: ae5f037a-7482-42b8-9848-99e445ea9930
+		summarizeBy: none
+		sourceColumn: WHEELS_OFF
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULED_TIME
+		dataType: string
+		lineageTag: 26709f45-d760-41b3-b103-55e84d20770b
+		summarizeBy: none
+		sourceColumn: SCHEDULED_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELAPSED_TIME
+		dataType: string
+		lineageTag: 5611056d-5492-43c6-896e-17eae5c748b4
+		summarizeBy: none
+		sourceColumn: ELAPSED_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIR_TIME
+		dataType: string
+		lineageTag: 1a3e4ed4-69a7-43d0-83e8-b41ce7db6bd3
+		summarizeBy: none
+		sourceColumn: AIR_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISTANCE
+		dataType: string
+		lineageTag: e48b75a9-05b1-4ca1-a2e6-d011c1dc0f8d
+		summarizeBy: none
+		sourceColumn: DISTANCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column WHEELS_ON
+		dataType: string
+		lineageTag: eb2bb611-27dc-4ebf-a090-1fb9388bfb29
+		summarizeBy: none
+		sourceColumn: WHEELS_ON
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAXI_IN
+		dataType: string
+		lineageTag: d2c7ab0b-c432-4691-b206-8782aa4ce876
+		summarizeBy: none
+		sourceColumn: TAXI_IN
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCHEDULED_ARRIVAL
+		dataType: string
+		lineageTag: 21895f01-6db1-49e6-adba-c3ef1ffd75ae
+		summarizeBy: none
+		sourceColumn: SCHEDULED_ARRIVAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column ARRIVAL_TIME
+		dataType: string
+		lineageTag: 73f44916-de95-4e10-b8be-747858006cda
+		summarizeBy: none
+		sourceColumn: ARRIVAL_TIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ARRIVAL_DELAY
+		dataType: string
+		lineageTag: a882e2a5-ea0e-4dec-b46d-7699f05f3985
+		summarizeBy: none
+		sourceColumn: ARRIVAL_DELAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIVERTED
+		dataType: string
+		lineageTag: a278b500-6534-452d-a3f9-aa6b6c222860
+		summarizeBy: none
+		sourceColumn: DIVERTED
+
+		annotation SummarizationSetBy = Automatic
+
+	column CANCELLED
+		dataType: string
+		lineageTag: 0772c859-bbcf-4760-8ebf-d0bfd61dedf4
+		summarizeBy: none
+		sourceColumn: CANCELLED
+
+		annotation SummarizationSetBy = Automatic
+
+	column CANCELLATION_REASON
+		dataType: string
+		lineageTag: dbe6e43b-b5e5-4264-a58b-960e4c828af6
+		summarizeBy: none
+		sourceColumn: CANCELLATION_REASON
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIR_SYSTEM_DELAY
+		dataType: string
+		lineageTag: caf5a40a-d9a1-4786-8a65-fd8ae8aebf5d
+		summarizeBy: none
+		sourceColumn: AIR_SYSTEM_DELAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SECURITY_DELAY
+		dataType: string
+		lineageTag: adbf4248-bb47-43d2-8c65-0e2e98881733
+		summarizeBy: none
+		sourceColumn: SECURITY_DELAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column AIRLINE_DELAY
+		dataType: string
+		lineageTag: b8b9b41e-dd29-44fa-bcc3-d85b9b96c294
+		summarizeBy: none
+		sourceColumn: AIRLINE_DELAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column LATE_AIRCRAFT_DELAY
+		dataType: string
+		lineageTag: a709ed6a-5754-4c1d-a100-30f6d42d660b
+		summarizeBy: none
+		sourceColumn: LATE_AIRCRAFT_DELAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEATHER_DELAY
+		dataType: string
+		lineageTag: b4898d64-1692-4b28-bce2-7d9d829e9b39
+		summarizeBy: none
+		sourceColumn: WEATHER_DELAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_key
+		dataType: string
+		lineageTag: 034193d2-965c-44a4-bba4-2039e88e69d8
+		summarizeBy: none
+		sourceColumn: time_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin_key
+		dataType: string
+		isHidden
+		lineageTag: 2dac6d53-7509-4676-ba31-5ce0f9a99528
+		summarizeBy: none
+		sourceColumn: origin_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column dest_key
+		dataType: string
+		isHidden
+		lineageTag: e072533b-41a1-4801-b594-f8f9a5c757d0
+		summarizeBy: none
+		sourceColumn: dest_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column airline_key
+		dataType: string
+		lineageTag: 2c70c7b4-12ac-4353-be4a-e941fd5287e0
+		summarizeBy: none
+		sourceColumn: airline_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column distance_num
+		dataType: int64
+		formatString: 0
+		lineageTag: cc68b234-1660-4b7e-8c80-c749afacaa25
+		summarizeBy: sum
+		sourceColumn: distance_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column !origin_airport_IATA =
+			
+			VAR OriginValue = 'fact_flights'[ORIGIN_AIRPORT]
+			VAR IsNumeric = NOT ISERROR(VALUE(OriginValue))
+			RETURN
+			    IF (
+			        IsNumeric,
+			        LOOKUPVALUE (
+			            'dim_airport_codes'[AIRPORT],
+			            'dim_airport_codes'[AIRPORT_ID],
+			            VALUE(OriginValue)
+			        ),
+			        OriginValue
+			    )
+		lineageTag: f02b774a-18f4-4907-b9c0-6f8ddcdf2e84
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column scheduled_departure_edited =
+			
+			VAR txt = fact_flights[SCHEDULED_DEPARTURE]
+			VAR hrs = LEFT(txt, LEN(txt) - 2)
+			VAR mins = RIGHT(txt, 2)
+			RETURN TIME(VALUE(hrs), VALUE(mins), 0)
+		formatString: Short Time
+		lineageTag: 59bac1de-5ef7-46b2-9d61-e3c260689b37
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 1a5310b8-5324-4b85-936c-be2e72874a04
+			defaultHierarchy: LocalDateTable_e8f23424-657a-4968-9366-cc079d90e83c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column departure_time_edited = ```
+			
+			VAR raw = fact_flights[DEPARTURE_TIME]
+			RETURN
+			IF (
+			    OR ( ISBLANK ( raw ), raw = "" ),
+			    BLANK (),
+			    VAR txt  = FORMAT ( VALUE ( raw ), "0000" )   
+			    VAR hrs  = LEFT ( txt, 2 )
+			    VAR mins = RIGHT ( txt, 2 )
+			    RETURN TIME ( VALUE ( hrs ), VALUE ( mins ), 0 )
+			)
+			```
+		formatString: Short Time
+		lineageTag: 5ff87975-0b21-4878-bb16-4b097ca8e3d2
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: cc32eefc-817e-4dbf-88f3-5d6294d59fee
+			defaultHierarchy: LocalDateTable_8caa3807-af04-41bb-b89d-0a68d8008ea9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column departure_delay_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 345059a3-972d-45bc-9281-3798ca9541e0
+		summarizeBy: sum
+		sourceColumn: departure_delay_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column !departure_delay_num_1 =
+			
+			VAR delay_raw = fact_flights[DEPARTURE_DELAY]
+			VAR delay_num =
+			    IF (
+			        ISBLANK(delay_raw) || TRIM(delay_raw) = "",
+			        BLANK(),
+			        VALUE(delay_raw)
+			    )
+			RETURN
+			IF (
+			    COALESCE(VALUE(fact_flights[Cancelled]), 0) = 1
+			        || COALESCE(VALUE(fact_flights[Diverted]), 0) = 1,
+			    BLANK(),
+			    delay_num
+			)
+		formatString: #,0
+		lineageTag: 67c60237-1b37-4a03-87ee-56a583385c44
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column !origin_state_d_a_c = RELATED( dim_airport_codes[AIRPORT_STATE_NAME] )
+		lineageTag: 5ba115b8-d6e4-45dd-9932-179d9a0e5a0c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin_state_d_a =
+			
+			LOOKUPVALUE(
+			    dim_airport[state],
+			    dim_airport[iata_code],
+			    fact_flights[!origin_airport_IATA]
+			)
+		lineageTag: d8950cd6-9007-4b8e-bceb-dfcf4cd5fbe8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin_state_code_d_a_c = RELATED( dim_airport_codes[AIRPORT_STATE_CODE] )
+		lineageTag: 13565550-2ec3-4e56-b1c6-e52cdcc2bdb4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'row match (origin_state)' =
+			
+			VAR A =
+			    UPPER( TRIM( fact_flights[origin_state_d_a] ) )
+			VAR B =
+			    UPPER( TRIM( fact_flights[origin_state_code_d_a_c] ) )
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK( A ) && ISBLANK( B ), "Both blank",
+			    A = B,                         "Match",
+			    TRUE(),                        "Mismatch"
+			)
+		lineageTag: 93c09c4e-aa16-491c-8855-b81705a0fea3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column !destination_airport_edited =
+			
+			VAR OriginValue = 'fact_flights'[DESTINATION_AIRPORT]
+			VAR IsNumeric = NOT ISERROR(VALUE(OriginValue))
+			RETURN
+			    IF (
+			        IsNumeric,
+			        LOOKUPVALUE (
+			            'dim_airport_codes'[AIRPORT],
+			            'dim_airport_codes'[AIRPORT_ID],
+			            VALUE(OriginValue)
+			        ),
+			        OriginValue
+			    )
+		lineageTag: 9f4e6bfd-5029-4454-889f-987c68eab848
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column !destination_state_d_a_c =
+			LOOKUPVALUE(
+			    dim_airport_codes[AIRPORT_STATE_NAME],    -- what to return
+			    dim_airport_codes[AIRPORT],   --- where to search
+			    fact_flights[!destination_airport_edited]  --- should be equal to
+			)
+		lineageTag: f062c42e-9555-4979-a4c2-25caff246a64
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination_state_d_a =
+			
+			LOOKUPVALUE(
+			    dim_airport[state],    -- what to return
+			    dim_airport[iata_code],   --- where to search
+			    fact_flights[!destination_airport_edited]  --- should be equal to
+			)
+		lineageTag: 423a4906-7046-42b9-895f-39eb79dd9c55
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination_state_code_d_a_c =
+			LOOKUPVALUE(
+			    dim_airport_codes[AIRPORT_STATE_CODE],    -- what to return
+			    dim_airport_codes[AIRPORT],   --- where to search
+			    fact_flights[!destination_airport_edited]  --- should be equal to
+			)
+		lineageTag: 466bfb49-fb7c-48bb-a81b-5f36eb45201f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'row match (destination_state)' =
+			
+			VAR A =
+			    UPPER( TRIM( fact_flights[destination_state_d_a] ) )
+			VAR B =
+			    UPPER( TRIM( fact_flights[destination_state_code_d_a_c] ) )
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK( A ) && ISBLANK( B ), "Both blank",
+			    A = B,                         "Match",
+			    TRUE(),                        "Mismatch"
+			)
+		lineageTag: 470f30e5-4555-4e0f-9121-d4925989032a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column !Route =
+			
+			fact_flights[!origin_airport_IATA] & " - " & fact_flights[!destination_airport_edited]
+		lineageTag: c4fc0f5c-c051-4e69-86cc-6895f62a386a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column !arrival_delay_num_1 =
+			IF (
+			    ISBLANK ( [ARRIVAL_DELAY] ) || [ARRIVAL_DELAY] = "",
+			    BLANK(),
+			    VALUE ( [ARRIVAL_DELAY] )
+			)
+		formatString: #,0
+		lineageTag: 43fe37e3-5b12-4f56-98eb-b865135237f5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column origin_lon =
+			LOOKUPVALUE(
+			    dim_airport[lon],    -- what to return
+			    dim_airport[iata_code],   --- where to search
+			    fact_flights[!origin_airport_IATA]  --- should be equal to
+			)
+		lineageTag: 5cad1436-1c59-4f33-8a44-c3e957bd63d0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin_lat =
+			LOOKUPVALUE(
+			    dim_airport[lat],    -- what to return
+			    dim_airport[iata_code],   --- where to search
+			    fact_flights[!origin_airport_IATA]  --- should be equal to
+			)
+		lineageTag: fb409836-c7f5-4565-8129-085417a2db55
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination_lon =
+			LOOKUPVALUE(
+			    dim_airport[lon],    -- what to return
+			    dim_airport[iata_code],   --- where to search
+			    fact_flights[!destination_airport_edited]  --- should be equal to
+			)
+		lineageTag: 0b4a9c57-f229-45b2-a5dc-1b312b91e85b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column destination_lat =
+			LOOKUPVALUE(
+			    dim_airport[lat],    -- what to return
+			    dim_airport[iata_code],   --- where to search
+			    fact_flights[!destination_airport_edited]  --- should be equal to
+			)
+		lineageTag: 4a779294-c0e2-4a1c-bc92-578b5441d825
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column !full_date = RELATED(dim_time[full_date])
+		formatString: General Date
+		lineageTag: 80c659b7-29ed-49ee-a17e-b53903285bc0
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: cc53b292-1c8f-4c47-9be6-9328c83ccbad
+			defaultHierarchy: LocalDateTable_248d7e28-8c38-4840-b1a6-80299fab739f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column !month = RELATED(dim_time[month])
+		formatString: 0
+		lineageTag: 0f0cd4c8-aeb1-4656-91e0-7c8578a13754
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column !month_name = RELATED(dim_time[month_name_short])
+		lineageTag: 1fc05ee3-a365-483d-92ae-fff967cabc82
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column !day = RELATED(dim_time[day])
+		formatString: 0
+		lineageTag: 6afd0920-7d41-459c-b862-ac15adcb02be
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column !day_of_week = RELATED(dim_time[day_of_week_num])
+		formatString: 0
+		lineageTag: e0edf799-6347-46dc-b9b1-c92a2ae15fa1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column !day_name = RELATED(dim_time[day_name])
+		lineageTag: db44e443-fd6a-4981-bcfb-ced69647a229
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column !is_weekend = if(RELATED(dim_time[is_weekend]) = TRUE(), 1, 0)
+		formatString: 0
+		lineageTag: 495aa070-3f8f-45b4-b32e-a588835103c0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column dep_hour =
+			
+			VAR tActual = fact_flights[departure_time_edited]
+			VAR tSched  = fact_flights[scheduled_departure_edited]
+			VAR tFinal  = IF ( NOT ISBLANK ( tActual ), tActual, tSched )
+			RETURN HOUR ( tFinal )
+		lineageTag: b43c2139-69cf-423c-9397-3b6bb3859482
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column arr_hour =
+			
+			VAR tActual = fact_flights[arrival_time_edited]
+			VAR tSched  = fact_flights[scheduled_arrival_edited]
+			VAR tFinal  = IF ( NOT ISBLANK ( tActual ), tActual, tSched )
+			RETURN HOUR ( tFinal )
+		formatString: 0
+		lineageTag: 4de5c204-dd5f-463b-95cc-a78df43e6a59
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column scheduled_arrival_edited =
+			
+			VAR txt = fact_flights[SCHEDULED_ARRIVAL]
+			VAR hrs = LEFT(txt, LEN(txt) - 2)
+			VAR mins = RIGHT(txt, 2)
+			RETURN TIME(VALUE(hrs), VALUE(mins), 0)
+		formatString: Short Time
+		lineageTag: f98b37c3-a010-4c8d-9349-a6b67672e519
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: fa8deb80-af9e-4dad-9cce-ddac4d3dc722
+			defaultHierarchy: LocalDateTable_0b89fa9e-f63c-4ded-b413-26221d7330b8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrival_time_edited = ```
+			
+			VAR raw = fact_flights[ARRIVAL_TIME]
+			RETURN
+			IF (
+			    OR ( ISBLANK ( raw ), raw = "" ),
+			    BLANK (),
+			    VAR txt  = FORMAT ( VALUE ( raw ), "0000" )   
+			    VAR hrs  = LEFT ( txt, 2 )
+			    VAR mins = RIGHT ( txt, 2 )
+			    RETURN TIME ( VALUE ( hrs ), VALUE ( mins ), 0 )
+			)
+			```
+		formatString: Short Time
+		lineageTag: 6314dc0b-ea7d-4c20-95db-c6fc677d4358
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 0190e305-2448-4d74-9c36-41662dcbfeac
+			defaultHierarchy: LocalDateTable_c541120f-bc04-479a-badb-cbbdf686df57.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column wheels_off_hour = ```
+			
+			VAR t = fact_flights[wheels_off_edited]
+			RETURN IF(ISBLANK(t), BLANK(), HOUR(t))
+			
+			```
+		lineageTag: 549cca59-9783-49f3-9768-a3223071eb9d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wheels_off_edited = ```
+			
+			VAR raw = fact_flights[WHEELS_OFF]
+			VAR txt = FORMAT(raw, "0000")
+			VAR txtSafe = IF(LEN(txt) = 4, txt, BLANK())
+			VAR hrs = LEFT(txtSafe, 2)
+			VAR mins = RIGHT(txtSafe, 2)
+			RETURN
+			    IF(
+			        NOT ISBLANK(txtSafe),
+			        TIME(VALUE(hrs), VALUE(mins), 0),
+			        BLANK()
+			    )
+			
+			
+			```
+		formatString: Short Time
+		lineageTag: 0a4ee62c-874e-4435-9afa-8fc3cf973963
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 88e64aa4-7e2b-41f6-9488-1e1760232dce
+			defaultHierarchy: LocalDateTable_cd54e94c-03c5-434c-8b5a-c8892d93a8e6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column wheels_on_edited =
+			
+			VAR raw = fact_flights[WHEELS_ON]
+			VAR txt = FORMAT(raw, "0000")
+			VAR txtSafe = IF(LEN(txt) = 4, txt, BLANK())
+			VAR hrs = LEFT(txtSafe, 2)
+			VAR mins = RIGHT(txtSafe, 2)
+			RETURN
+			    IF(
+			        NOT ISBLANK(txtSafe),
+			        TIME(VALUE(hrs), VALUE(mins), 0),
+			        BLANK()
+			    )
+		formatString: Short Time
+		lineageTag: ad48f584-15e9-4963-8f0b-fb204e5d9ed6
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: c7edd5a6-0738-4588-8bde-fcd5d97b48e1
+			defaultHierarchy: LocalDateTable_140774ed-98c6-4d84-bcdd-42d7f26a0ecc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column wheels_on_hour =
+			
+			VAR t = fact_flights[wheels_on_edited]
+			RETURN IF(ISBLANK(t), BLANK(), HOUR(t))
+		formatString: 0
+		lineageTag: 16c16692-54e6-4763-9e6e-f72365f1ceb1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dep Delay Category' = ```
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(fact_flights[!departure_delay_num_1]), BLANK(),
+			    fact_flights[!departure_delay_num_1] <= 15, "1. On-Time <=15 min",
+			    fact_flights[!departure_delay_num_1]>15 && fact_flights[!departure_delay_num_1]<=59, "2. Moderate Delay 16-59 min",
+			    fact_flights[!departure_delay_num_1]>59 && fact_flights[!departure_delay_num_1]<=119, "3. Severe Delay 60-119 min",
+			    fact_flights[!departure_delay_num_1] > 119, "4. Very Severe Delay 120+ min"
+			)
+			 
+			```
+		lineageTag: e21fdfce-202b-4fa2-a3d1-ead077dbbe7d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delay_Num_AirSystem = VAR t = fact_flights[AIR_SYSTEM_DELAY]     RETURN IF( ISBLANK(t) || t = "", BLANK(), VALUE(t) )
+		lineageTag: 056b570a-db9f-40d7-b8de-d2de6f1b3a3f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Delay_Num_Security = VAR t = fact_flights[SECURITY_DELAY]       RETURN IF( ISBLANK(t) || t = "", BLANK(), VALUE(t) )
+		lineageTag: f0bee138-8db2-4388-a478-14347a1311fe
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Delay_Num_Airline = VAR t = fact_flights[AIRLINE_DELAY]        RETURN IF( ISBLANK(t) || t = "", BLANK(), VALUE(t) )
+		lineageTag: 44ce0712-4d46-4a34-9ee7-9a22c3d7d6f4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Delay_Num_LateAircraft = VAR t = fact_flights[LATE_AIRCRAFT_DELAY]  RETURN IF( ISBLANK(t) || t = "", BLANK(), VALUE(t) )
+		lineageTag: bb6c0203-6a08-4cc9-b98d-fd370038b748
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Delay_Num_Weather = VAR t = fact_flights[WEATHER_DELAY]        RETURN IF( ISBLANK(t) || t = "", BLANK(), VALUE(t) )
+		lineageTag: e5a428bc-9b6d-46d0-a3d0-fed445197541
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column taxi_out_edited_num = ```
+			VAR t = fact_flights[TAXI_OUT]     RETURN IF( ISBLANK(t) || t = "", BLANK(), VALUE(t) )
+			
+			```
+		formatString: 0
+		lineageTag: 31b3b71c-1a50-4b01-a815-872ecf2109be
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column taxi_in_edited_num = VAR t = fact_flights[TAXI_IN]     RETURN IF( ISBLANK(t) || t = "", BLANK(), VALUE(t) )
+		lineageTag: 57d72419-a8a7-400d-81a9-1b33b0a462c3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column !scheduled_time =
+			
+			VAR val = TRIM([SCHEDULED_TIME])
+			RETURN
+			IF(val = BLANK() || val = "", BLANK(), VALUE(val))
+		lineageTag: 3c5ab447-196e-4c91-8fde-a9e0d2c192d1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column !flight_category = ```
+			SWITCH(true(), 
+			fact_flights[!scheduled_time]<=120, "1. Short Flight", 
+			fact_flights[!scheduled_time]>120 && fact_flights[!scheduled_time]<=350, "2. Medium Flight", 
+			fact_flights[!scheduled_time]>350, "3. Long Flight")
+			```
+		lineageTag: 21c10cfe-71e2-4e3e-8405-b5f64de8833b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlightType =
+			
+			IF(
+			    fact_flights[!origin_state_d_a_c] = fact_flights[!destination_state_d_a_c],
+			    "Domestic",
+			    "Interstate"
+			)
+		lineageTag: 08c35563-2257-4cc6-b17d-173cd2945602
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column !flight_status = ```
+			
+			SWITCH(
+			    TRUE(),
+			    fact_flights[CANCELLED] = "1", "Cancelled",         
+			    fact_flights[DIVERTED] = "1", "Diverted",         
+			    "Successful")
+			```
+		lineageTag: e6924d93-f260-413b-afe4-e7993fb283b4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column !cancelled =
+			
+			VAR val = TRIM([CANCELLED])
+			RETURN
+			IF(val = BLANK() || val = "", BLANK(), VALUE(val))
+		lineageTag: 0195dcae-0a24-4d46-bfe2-5a88bf30bff3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_flights = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\nzara\OneDrive\DBS\Data Visualisation\Assignment CA2\csv_final\fact_flights.csv"),[Delimiter=",", Columns=40, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Promoted Headers",{"YEAR", "MONTH", "DAY", "DAY_OF_WEEK", "flight_date", "flight_year", "flight_month"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Columns","7819A","N7819A",Replacer.ReplaceValue,{"TAIL_NUMBER"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","7820L","N7820L",Replacer.ReplaceValue,{"TAIL_NUMBER"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","D942DN","N942DN",Replacer.ReplaceText,{"TAIL_NUMBER"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Replaced Value2",{"route_key"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns1", "DEPARTURE_DELAY_NUM", each try Number.FromText([DEPARTURE_DELAY]) otherwise null),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"DEPARTURE_DELAY_NUM", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each true),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"DEPARTURE_DELAY_NUM", "departure_delay_num"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"distance_num", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

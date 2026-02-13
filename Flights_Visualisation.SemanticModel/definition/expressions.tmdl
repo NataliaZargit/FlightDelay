@@ -1,0 +1,59 @@
+expression 'Errors in dim_route' =
+		let
+		Source = dim_route
+		in
+		    Source
+	lineageTag: 0d9f275f-b12d-4299-b0b9-478c1b2ad0cb
+	queryGroup: 'Query Errors - 25/09/2025 15:03:17'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Errors in dim_aircraft' =
+		let
+		Source = dim_aircraft,
+		  #"Detected Type Mismatches" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "The type of the value does not match the type of the column.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Source, pairs),
+		  #"Added Index" = Table.AddIndexColumn(#"Detected Type Mismatches", "Row Number" ,1),
+		  #"Kept Errors" = Table.SelectRowsWithErrors(#"Added Index", {"N-NUMBERs", "MFR", "MODEL", "TYPE-ACFT", "TYPE-ENG", "AC-CAT", "NO-ENG", "NO-SEATS", "AC-WEIGHT", "SPEED"}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Kept Errors",{{"TYPE-ACFT", type text}}),
+		  #"Reordered Columns" = Table.ReorderColumns(#"Changed Type", {"Row Number", "N-NUMBERs", "MFR", "MODEL", "TYPE-ACFT", "TYPE-ENG", "AC-CAT", "NO-ENG", "NO-SEATS", "AC-WEIGHT", "SPEED"})
+		in
+		  #"Reordered Columns"
+	lineageTag: 4c3208b9-b743-44fd-bf20-522379be50d4
+	queryGroup: 'Query Errors - 28/09/2025 00:29:12'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression dim_aircraft =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\nzara\OneDrive\DBS\Data Visualisation\Assignment CA2\csv_final\dim_aircraft.csv"),[Delimiter=",", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"N-NUMBERs", type text}, {"MFR", type text}, {"MODEL", type text}, {"TYPE-ACFT", Int64.Type}, {"TYPE-ENG", Int64.Type}, {"AC-CAT", Int64.Type}, {"NO-ENG", Int64.Type}, {"NO-SEATS", Int64.Type}, {"AC-WEIGHT", type text}, {"SPEED", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: 4f8224ce-c637-4754-8acb-cbd12c4cf81b
+
+	annotation PBI_ResultType = Table
+
+expression dim_route =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\nzara\OneDrive\DBS\Data Visualisation\Assignment CA2\csv_final\dim_route_new.csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 614afd57-f7b2-4202-87ec-60a9ec2d372f
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

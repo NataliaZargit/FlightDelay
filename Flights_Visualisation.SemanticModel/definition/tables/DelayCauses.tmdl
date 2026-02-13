@@ -1,0 +1,30 @@
+table DelayCauses
+	lineageTag: 54b809cd-026e-4777-b15c-f053672e88ac
+
+	column Delay_Cause
+		lineageTag: f069d2e3-52fb-4d82-892b-b094cac10fe2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Delay_Cause]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DelayCauses = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Delay_Cause", STRING,
+				    {
+				        {"Weather Delay"},
+				        {"Airline Delay"},
+				        {"Security Delay"},
+				        {"Late Aircraft Delay"},
+				        {"Air System Delay"}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = c81b34082ab14fbba864f7bdca768afe
+

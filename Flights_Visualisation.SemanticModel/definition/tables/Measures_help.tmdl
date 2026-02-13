@@ -1,0 +1,583 @@
+table Measures_help
+	lineageTag: fc6031fc-62e0-490a-ad90-cb173157f877
+
+	measure 'Unique Origin States_d_a' =
+			
+			DISTINCTCOUNT( fact_flights[origin_state_d_a] )
+		formatString: 0
+		lineageTag: 380ae1f8-f334-4e13-af7c-683578385df5
+
+	measure 'Unique Origin States_d_a_c' =
+			
+			DISTINCTCOUNT( fact_flights[!origin_state_d_a_c] )
+		formatString: 0
+		lineageTag: 8a17a743-da93-4b55-a76f-d2c3a6938f6e
+
+	measure 'Number of Flights' = ```
+			COUNTROWS (fact_flights) 
+			```
+		formatString: #,0
+		lineageTag: 43e7036b-d723-43b9-bf86-6e7f3ee6cca7
+
+	measure 'Flights (Not Cancelled)' = ```
+			
+			CALCULATE ( [Number of Flights], KEEPFILTERS ( FILTER ( fact_flights, COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0 ) )
+			)
+			
+			```
+		formatString: #,0
+		lineageTag: 7e2fd272-5751-441a-8d62-e9590906afc8
+
+	measure 'Flights (Cancelled )' =
+			
+			CALCULATE ( [Number of Flights], fact_flights[Cancelled] = "1" )
+		formatString: #,0
+		lineageTag: 762df9cb-2352-45e9-b885-e20d074242e7
+
+	measure 'Cancellation Rate %' = DIVIDE ( [Flights (Cancelled )], [Number of Flights] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: edd149e5-592a-49bf-8bfc-be276af3908a
+
+	measure 'Diversions amount' = ```
+			
+			CALCULATE ( [Number of Flights],
+			    KEEPFILTERS ( FILTER ( fact_flights, COALESCE ( VALUE ( fact_flights[Diverted] ), 0 ) = 1 ) )
+			)
+			
+			```
+		formatString: #,0
+		lineageTag: 1b4f8a5b-2e38-4f48-b0bc-f986a2b09034
+
+	measure 'Avg Dep Delay (min) – Not Cancelled' = ```
+			
+			CALCULATE (
+			    AVERAGE ( fact_flights[!departure_delay_num_1] ),
+			    KEEPFILTERS (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!departure_delay_num_1] )
+			        )
+			    )
+			)
+			
+			```
+		lineageTag: 1c4f1f29-1e5f-4344-bfd1-211bc2724971
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Dep Delay (min) – Not Cancelled' =
+			
+			CALCULATE (
+			    MEDIAN ( fact_flights[!departure_delay_num_1] ),
+			    KEEPFILTERS (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!departure_delay_num_1] )
+			        )
+			    )
+			)
+		lineageTag: 9a43ba5b-78a3-4ff3-80bb-cccbf3a00972
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Dep Delay (min) – Not Cancelled/Diverted' = ```
+			
+			CALCULATE (
+			    SUM ( fact_flights[!departure_delay_num_1] ),
+			    KEEPFILTERS (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && COALESCE ( VALUE ( fact_flights[Diverted] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!departure_delay_num_1] )
+			        )
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: db8a4482-5891-463b-9c4b-16802d094a5f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'OTP Departure % (≤ 15 min)' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        [Number of Flights],
+			        FILTER(
+			            fact_flights,
+			            NOT(ISBLANK(fact_flights[!departure_delay_num_1])) &&
+			            fact_flights[!departure_delay_num_1] <= 15
+			        )
+			    ),
+			    CALCULATE(
+			        [Number of Flights],
+			        FILTER(
+			            fact_flights,
+			            NOT(ISBLANK(fact_flights[!departure_delay_num_1]))
+			        )
+			    )
+			)
+		lineageTag: cc86d9bc-f0d7-4409-9e88-b50fe0953e76
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Dep Delay per Flight Number – Not Cancelled' =
+			
+			AVERAGEX (
+			    SUMMARIZE (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!departure_delay_num_1] )
+			        ),
+			        fact_flights[FLIGHT_NUMBER],
+			        "DelayPerFlight",
+			            AVERAGE ( fact_flights[!departure_delay_num_1] )
+			    ),
+			    [DelayPerFlight]
+			)
+		lineageTag: 10a27b41-56af-473b-98d2-98a4ab71c903
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '1. Dep Delay On-time ≤15 min (Flights)' = ```
+			
+			CALCULATE (
+			    [Number of Flights],
+			    KEEPFILTERS (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!departure_delay_num_1] )
+			                && fact_flights[!departure_delay_num_1] <= 15
+			        )
+			    )
+			)
+			
+			
+			```
+		formatString: 0
+		lineageTag: 87596136-4f2c-4b1c-8ccf-e79efcaff822
+
+	measure '2. Dep Delay Moderate 16–59 min (Flights)' = ```
+			
+			CALCULATE (
+			    [Number of Flights],
+			    KEEPFILTERS (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!departure_delay_num_1] )
+			                && fact_flights[!departure_delay_num_1] >= 16
+			                && fact_flights[!departure_delay_num_1] < 60
+			        )
+			    )
+			)
+			
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: 6ca8dd56-3a94-4545-a22d-d7d58e8c755d
+
+	measure '3. Dep Delay Severe 60–119 min (Flights)' = ```
+			
+			CALCULATE (
+			    [Number of Flights],
+			    KEEPFILTERS (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!departure_delay_num_1] )
+			                && fact_flights[!departure_delay_num_1] >= 60
+			                && fact_flights[!departure_delay_num_1] < 120
+			        )
+			    )
+			)
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: 6f9ba9d2-a2e8-43f5-94da-46e15390757e
+
+	measure '4. Dep Delay Very Severe 120+ min (Flights)' =
+			
+			CALCULATE (
+			    [Number of Flights],
+			    KEEPFILTERS (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!departure_delay_num_1] )
+			                && fact_flights[!departure_delay_num_1] >= 120
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: c7ed42ff-5e75-49b0-8096-04d1140368a2
+
+	measure 'Avg Arr Delay (min) Not Cancelled' =
+			
+			CALCULATE (
+			    AVERAGE ( fact_flights[!arrival_delay_num_1] ),
+			    KEEPFILTERS ( FILTER ( fact_flights,
+			        COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			        && NOT ISBLANK ( fact_flights[!arrival_delay_num_1] )
+			    ) )
+			)
+		lineageTag: 2467a662-f4d1-46f2-8c27-348f3b26caaa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Arr Delay (min) - Not Cancelled' =
+			
+			CALCULATE (
+			    SUM ( fact_flights[!arrival_delay_num_1] ),
+			    KEEPFILTERS ( FILTER ( fact_flights,
+			        COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			        && NOT ISBLANK ( fact_flights[!arrival_delay_num_1] )
+			    ) )
+			)
+		lineageTag: b4290759-8175-4b58-aca5-7223bc94d829
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Arr Delay (min) – Not Cancelled' =
+			
+			CALCULATE (
+			    MEDIAN ( fact_flights[!arrival_delay_num_1] ),
+			    KEEPFILTERS (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!arrival_delay_num_1] )
+			        )
+			    )
+			)
+		lineageTag: 1968d158-40ae-467f-9564-e2a58440a448
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Arr Delay per Flight Number – Not Cancelled' =
+			
+			AVERAGEX (
+			    SUMMARIZE (
+			        FILTER (
+			            fact_flights,
+			            COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0
+			                && NOT ISBLANK ( fact_flights[!arrival_delay_num_1] )
+			        ),
+			        fact_flights[FLIGHT_NUMBER],
+			        "DelayPerFlight",
+			            AVERAGE ( fact_flights[!arrival_delay_num_1] )
+			    ),
+			    [DelayPerFlight]
+			)
+		lineageTag: b2a19fee-cee9-46cc-a37d-9b327fb0c448
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Departure Delay 60-119 min, %' = DIVIDE ( [3. Dep Delay Severe 60–119 min (Flights)], [Flights (Not Cancelled)] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c8a1c776-871a-4fd6-9702-d3632ba3697a
+
+	measure 'Departure Delay 120+min, %' = DIVIDE ( [4. Dep Delay Very Severe 120+ min (Flights)], [Flights (Not Cancelled)] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: bf3b43c3-0a83-44c4-99da-b0f5e3516e30
+
+	measure 'Diversion Rate %' =
+			
+			DIVIDE ( [Diversions amount], [Number of Flights] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 13dc6a6f-da1c-40fa-b783-3491d58a3735
+
+	measure 'Total Dep Delay (min) by Origin' = [Total Dep Delay (min) – Not Cancelled/Diverted]
+		lineageTag: e2861865-0ed6-4574-bc09-cd2abb016935
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Arr Delay(min) by Destination' =
+			
+			CALCULATE (
+			    [Total Arr Delay (min) - Not Cancelled],
+			    USERELATIONSHIP ( fact_flights[!destination_airport_edited], dim_airport_codes[AIRPORT] )
+			)
+		lineageTag: 55415a50-1a78-46a6-b351-4c7184988377
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Flights in Delay Category' = ```
+			
+			CALCULATE(
+			    [Number of Flights],
+			    NOT(ISBLANK(fact_flights[Dep Delay Category]))
+			)
+			
+			```
+		formatString: #,0
+		lineageTag: f8d72279-d2c1-479f-9939-255eaecf5b25
+
+	measure '% of_Airline' = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS(fact_flights), 
+			        NOT(ISBLANK(fact_flights[Dep Delay Category]))
+			    ),
+			    CALCULATE(
+			        COUNTROWS(fact_flights),
+			        NOT(ISBLANK(fact_flights[Dep Delay Category])),
+			        ALLEXCEPT(fact_flights, fact_flights[airline])
+			    )
+			)
+			
+			```
+		lineageTag: fe38d559-e772-421e-81e1-63f8eca8833f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dep Cat Share within Airline %' = ```
+			
+			DIVIDE (
+			    [Flights (Not Cancelled)],  
+			    VAR Denom =
+			        CALCULATE (
+			            [Flights (Not Cancelled)],
+			            FILTER (
+			                ALL ( fact_flights[Dep Delay Category] ),   
+			                NOT ISBLANK ( fact_flights[Dep Delay Category] )   
+			            )
+			        )
+			    RETURN Denom
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 315d9733-1336-4cf6-912c-fc670baee9e8
+
+	measure 'Airline Share within DepCat %' = ```
+			
+			DIVIDE (
+			    [Flights (Not Cancelled)],
+			    CALCULATE (
+			        [Flights (Not Cancelled)],
+			        ALL ( dim_airline )   
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b7732a9f-1e10-4ce9-8b8c-a7fdbd6c5481
+
+	measure RowRank_DepCatShare = ```
+			
+			VAR HasAirline = HASONEVALUE ( dim_airline[carrier_code] )
+			VAR Cat = SELECTEDVALUE ( fact_flights[Dep Delay Category] )
+			RETURN
+			IF (
+			    NOT HasAirline || ISBLANK ( Cat ),
+			    BLANK(),   
+			    RANKX (
+			        ALLSELECTED ( dim_airline[carrier_code] ),
+			        CALCULATE ( [Dep Cat Share within Airline %], fact_flights[Dep Delay Category] = Cat ),
+			        ,
+			        DESC,
+			        DENSE
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: fcefa424-ff48-4f90-ba4e-c0aa3e98d82b
+
+	measure CellColor_RowTopN = ```
+			
+			VAR R   = [RowRank_DepCatShare]
+			VAR Cat = SELECTEDVALUE ( fact_flights[Dep Delay Category] )
+			RETURN
+			SWITCH (
+			    TRUE(),
+			    ISBLANK ( Cat ) || ISBLANK ( R ), BLANK(),
+			
+			    -- 1) On-Time
+			    Cat = "1. On-Time <=15 min" && R = 1, "#2E7D32",
+			    Cat = "1. On-Time <=15 min" && R = 2, "#4CAF50",
+			    Cat = "1. On-Time <=15 min" && R = 3, "#81C784",
+			
+			    -- 2) Moderate
+			    Cat = "2. Moderate Delay 16-59 min" && R = 1, "#F9A825",
+			    Cat = "2. Moderate Delay 16-59 min" && R = 2, "#FBC02D",
+			    Cat = "2. Moderate Delay 16-59 min" && R = 3, "#FFF176",
+			
+			    -- 3) Severe
+			    Cat = "3. Severe Delay 60-119 min" && R = 1, "#1565C0",
+			    Cat = "3. Severe Delay 60-119 min" && R = 2, "#1E88E5",
+			    Cat = "3. Severe Delay 60-119 min" && R = 3, "#64B5F6",
+			
+			    -- 4) Very Severe (120+)
+			    Cat = "4. Very Severe Delay 120+ min" && R = 1, "#C62828",
+			    Cat = "4. Very Severe Delay 120+ min" && R = 2, "#E53935",
+			    Cat = "4. Very Severe Delay 120+ min" && R = 3, "#EF9A9A",
+			
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 1b685835-b9a1-4a3f-b4e6-8cbb9644069d
+
+	measure 'Delay Minutes – Air System' =
+			
+			CALCULATE ( SUM ( fact_flights[Delay_Num_AirSystem] ),
+			    KEEPFILTERS ( FILTER ( fact_flights, COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0 ) )
+			)
+		formatString: 0
+		lineageTag: 6250d429-0bd8-4e76-bb6c-6432dfe244fd
+
+	measure 'Delay Minutes – Security' =
+			
+			CALCULATE ( SUM ( fact_flights[Delay_Num_Security] ),
+			    KEEPFILTERS ( FILTER ( fact_flights, COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0 ) )
+			)
+		formatString: 0
+		lineageTag: 6be4d580-9ef1-4940-b29a-31bd2eab0a3e
+
+	measure 'Delay Minutes – Airline' =
+			
+			CALCULATE ( SUM ( fact_flights[Delay_Num_Airline] ),
+			    KEEPFILTERS ( FILTER ( fact_flights, COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0 ) )
+			)
+		formatString: 0
+		lineageTag: 624dd196-152e-442d-9631-3b7c5190ec11
+
+	measure 'Delay Minutes – Late Aircraft' =
+			
+			CALCULATE ( SUM ( fact_flights[Delay_Num_LateAircraft] ),
+			    KEEPFILTERS ( FILTER ( fact_flights, COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0 ) )
+			)
+		formatString: 0
+		lineageTag: dad29c2b-c62b-490e-a2f1-4d9ab1988d31
+
+	measure 'Delay Minutes – Weather' =
+			
+			CALCULATE ( SUM ( fact_flights[Delay_Num_Weather] ),
+			    KEEPFILTERS ( FILTER ( fact_flights, COALESCE ( VALUE ( fact_flights[Cancelled] ), 0 ) = 0 ) )
+			)
+		formatString: 0
+		lineageTag: 843b7c1a-8ff7-4846-85bb-84dea0ce8ad7
+
+	measure 'Delay Minutes – Total Causes' =
+			
+			[Delay Minutes – Air System] + [Delay Minutes – Security] + [Delay Minutes – Airline] +
+			[Delay Minutes – Late Aircraft] + [Delay Minutes – Weather]
+		formatString: 0
+		lineageTag: 3e28babf-3799-44b5-b39c-190199f27265
+
+	measure '% Air System Delay' = DIVIDE ( [Delay Minutes – Air System], [Delay Minutes – Total Causes] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 130109d7-a0cd-4689-aa6f-3b444094a4e4
+
+	measure '% Security Delay' = DIVIDE ( [Delay Minutes – Security], [Delay Minutes – Total Causes] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9627633b-15b4-4e86-91cf-77c2cf264cfe
+
+	measure '% Airline Delay' = DIVIDE ( [Delay Minutes – Airline], [Delay Minutes – Total Causes] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 88b066a6-78d5-4789-9ff2-3fd3a5ea835a
+
+	measure '% Late Aircraft Delay' = DIVIDE ( [Delay Minutes – Late Aircraft], [Delay Minutes – Total Causes] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 68279fba-18d6-48e8-bcee-498a26b47f6d
+
+	measure '% Weather Delay' = DIVIDE ( [Delay Minutes – Weather], [Delay Minutes – Total Causes] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a9e9c63c-abf6-46d2-9cdb-7e5516fb20f3
+
+	measure 'Delay Minutes – Selected Cause' =
+			
+			VAR SelectedCause = SELECTEDVALUE ( DelayCauses[Delay_Cause] )
+			RETURN
+			SWITCH (
+			    SelectedCause,
+			    "Weather Delay",       [Delay Minutes – Weather],
+			    "Airline Delay",       [Delay Minutes – Airline],
+			    "Security Delay",      [Delay Minutes – Security],
+			    "Late Aircraft Delay", [Delay Minutes – Late Aircraft],
+			    "Air System Delay",    [Delay Minutes – Air System],
+			    BLANK()
+			)
+		lineageTag: d3938964-d58e-4616-889f-830ae4399a8c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Causes (debug)' = ```
+			
+			CONCATENATEX ( VALUES ( DelayCauses[Delay_Cause] ), DelayCauses[Delay_Cause], ", " )
+			
+			```
+		lineageTag: 94bbeae7-d657-4093-9e8a-659459c00c79
+
+	measure !flight_duration =
+			
+			DIVIDE(
+				SUM('fact_flights'[!scheduled_time]),
+				COUNT('fact_flights'[!full_date]) *60
+			)
+		lineageTag: d55e03a5-e6b3-4fc8-a328-da932ec1cb98
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure !air_hours_per_day =
+			
+			DIVIDE(
+				SUM('fact_flights'[!scheduled_time]),
+				DISTINCTCOUNT('fact_flights'[!full_date])*
+			    DISTINCTCOUNT('fact_flights'[TAIL_NUMBER])*60
+			)
+		lineageTag: 9b6daa3c-d99e-4cf9-8317-c94ff52f2e19
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure !flighs_by_plane =
+			
+			DIVIDE(
+				COUNT('fact_flights'[!scheduled_time]),
+				DISTINCTCOUNT('fact_flights'[TAIL_NUMBER]) * 365
+			)
+		lineageTag: b6d06e50-7177-4256-b5a3-2ea771f428de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure !airline_efficiency = ([!flighs_by_plane] + [!air_hours_per_day] +[!flight_duration])
+		lineageTag: 572e1e4d-d402-41e4-8337-65af4628df9d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure cancel_coef = SUM(fact_flights[!cancelled])/COUNT(fact_flights[FLIGHT_NUMBER])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fa61f6f8-195f-40b5-8474-e9465717067d
+
+	column _dummy
+		dataType: string
+		isHidden
+		lineageTag: 2bf222d1-ddb6-47ed-bae4-a700b0bfa99b
+		summarizeBy: none
+		sourceColumn: _dummy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Measures_help = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [_dummy = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"_dummy", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
